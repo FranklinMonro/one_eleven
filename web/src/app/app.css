@@ -1,3 +1,13 @@
 mat-toolbar {
-  background: linear-gradient(to right, #B71C1C, #FFCDD2) !important;
+  background: linear-gradient(to right, #B71C1C, #FFCDD2, #212121) !important;
+}
+
+.toolbar-script {
+  font-family: 'sans-Serif', cursive, sans-serif;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
 }
