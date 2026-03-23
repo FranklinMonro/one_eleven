@@ -11,3 +11,18 @@ mat-toolbar {
 .toolbar-spacer {
   flex: 1 1 auto;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+}
+
+.centered-card {
+  max-width: 40vw;
+  max-height: 40vh;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  border-radius: 12px;
+  border: 2px solid #B71C1C;
+}
