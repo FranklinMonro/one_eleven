@@ -19,10 +19,20 @@ mat-toolbar {
 }
 
 .centered-card {
-  max-width: 40vw;
+  max-width: 20vw;
   max-height: 40vh;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
   border-radius: 12px;
   border: 2px solid #B71C1C;
+}
+
+.card-title {
+  font-family: 'sans-Serif', cursive, sans-serif;
+  font-weight: 700;
+  color: #B71C1C;
+}
+
+mat-form-field {
+  width: 90%;
 }
