@@ -1,8 +1,16 @@
 // src/index.ts
 import express, { type Request, type Response } from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// CORS configuration
+app.use(cors({
+  origin: '*', // Allow all origins (wildcards)
+  methods: ['GET', 'POST'], // Only allow GET and POST
+  credentials: true
+}));
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World! This is a TypeScript backend.');

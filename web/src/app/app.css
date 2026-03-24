@@ -36,3 +36,11 @@ mat-toolbar {
 mat-form-field {
   width: 90%;
 }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
