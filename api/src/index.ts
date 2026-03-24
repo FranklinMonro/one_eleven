@@ -16,7 +16,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World! This is a TypeScript backend.');
 });
 
-app.post('/convert/:example', (req: Request, res: Response) => {
+app.post('/functions/v1/:example', (req: Request, res: Response) => {
   const  { example } = req.params as { example: string };
   const arrayString = example.split('');
   const sortedArray = arrayString.sort();

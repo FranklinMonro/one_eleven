@@ -63,16 +63,15 @@ export class App implements OnInit {
     this.wordForm = new FormGroup({
       word: new FormControl<string>('', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
       email: new FormControl<string>('', [Validators.required,Validators.email]),
-    });
-    this.data = this.exampleData;
+    });;
   }
 
   onSubmit() {
-    this.httpClient.post(`${this.apiUrl}/convert/${this.wordForm.get('word')?.value}`, 
+    this.httpClient.post(`${this.apiUrl}/functions/v1/${this.wordForm.get('word')?.value}`, 
       { observe : 'response' }
     ).subscribe({
       next: (response) => {
-        console.log('Form submitted successfully', response);
+        this.fetchOneElevenResponse(response)
       },
       error: (error) => {
         console.error('Error submitting form', error);
@@ -80,8 +79,35 @@ export class App implements OnInit {
     });
   }
 
-  fetchOneElevenResponse(wordArray: string[]) {
-
+  fetchOneElevenResponse(wordArray: any) {
+    console.log('Word array from backend:', wordArray);
+    const localUrl = `${this.apiUrl}/functions/v1/${this.wordForm.get('word')?.value}`;
+    const oneEleven = `https://yhxzjyykdsfkdrmdxgho.supabase.co/functions/v1/application-task?url=${localUrl}&email=${this.wordForm.get('email')!.value}`;
+    
+    const convertedWord = Array.isArray(wordArray?.word) ? wordArray.word.join('') : '';
+    
+    this.httpClient.get(oneEleven).subscribe({
+      next: (response) => {
+        console.log('Response from 1.11 API:', response);
+        this.data.push({
+          word: this.wordForm.get('word')!.value,
+          converted: convertedWord,
+          response: response,
+          date: new Date().toLocaleString()
+        });
+        console.log('Updated data array:', this.data);
+      },
+      error: (error) => {
+        console.error('Network response was not ok:', error);
+        this.data.push({
+          word: this.wordForm.get('word')!.value,
+          converted: convertedWord,
+          response: error.error || error,
+          date: new Date().toLocaleString()
+        });
+        console.log('Updated data array:', this.data);
+      }
+    });
   }
 
   oneElevenResponseMessage(message: any): string {
